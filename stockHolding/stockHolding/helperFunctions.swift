@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyTextTable
 
 //MARK: - Display user menu
 public func showMenu() {
@@ -26,16 +27,58 @@ public func getUserInput() -> Int {
     return userChoice
 }
 
-public func loadLocalStockData(_ filename: String) -> [StockHolding]? {
-    if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
-        do {
-            let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let jsonData = try decoder.decode([StockHolding].self, from: data)
-            return jsonData
-        } catch {
-            print("error:\(error)")
-        }
+public func loadLocalStockData(_ localStockData: [StockHolding]) -> [StockHolding] {
+    let stockId = TextTableColumn(header: "Stock Id")
+    let companyName = TextTableColumn(header: "Company Name")
+    let currentSharePrice = TextTableColumn(header: "Current Share Price(CAD)")
+    let purchaseSharePrice = TextTableColumn(header: "Purchase Share Price(CAD)")
+    let numberOfShares = TextTableColumn(header: "Number of Shares")
+    let stockData = localStockData.sorted(by: {$0.companyName < $1.companyName})
+    
+    // Then create a table with the columns
+    var table = TextTable(columns: [stockId, companyName, currentSharePrice, purchaseSharePrice, numberOfShares])
+    table.header = "Local Stock Information"
+    // Then add some rows
+    for (index, i) in stockData.enumerated(){
+        stockData[index].stockId = index + 1
+        table.addRow(values: [index + 1,
+                              i.companyName,
+                              i.currentSharePrice,
+                              i.purchaseSharePrice,
+                              i.numberOfShares])
     }
-    return nil
+    
+    // Then render the table and use
+    let tableString = table.render()
+    print(tableString)
+    return stockData
+}
+
+public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding]) -> [ForeignStockHolding] {
+    let stockId = TextTableColumn(header: "Stock Id")
+    let companyName = TextTableColumn(header: "Company Name")
+    let currentSharePrice = TextTableColumn(header: "Current Share Price")
+    let purchaseSharePrice = TextTableColumn(header: "Purchase Share Price")
+    let numberOfShares = TextTableColumn(header: "Number of Shares")
+    let conversionRate = TextTableColumn(header: "Conversion Rate")
+    let stockData = foreignStockData.sorted(by: {$0.companyName > $1.companyName})
+    
+    // Then create a table with the columns
+    var table = TextTable(columns: [stockId, companyName, currentSharePrice, purchaseSharePrice, numberOfShares, conversionRate])
+    table.header = "Foreign Stock Information"
+    // Then add some rows
+    for (index, i) in stockData.enumerated(){
+        stockData[index].stockId = index + 1
+        table.addRow(values: [index + 1,
+                              i.companyName,
+                              i.currentSharePrice,
+                              i.purchaseSharePrice,
+                              i.numberOfShares,
+                              i.conversionRate])
+    }
+    
+    // Then render the table and use
+    let tableString = table.render()
+    print(tableString)
+    return stockData
 }
