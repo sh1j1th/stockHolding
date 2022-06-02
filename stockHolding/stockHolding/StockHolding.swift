@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 public class StockHolding: Codable{
     
     // Variable declaration
@@ -14,7 +15,7 @@ public class StockHolding: Codable{
     var numberOfShares: Int = 0
     var companyName: String = ""
     
-    init(purchaseSharePrice: Float, currentSharePrice: Float, numberOfShares: Int, companyName: String)
+    init(companyName: String, purchaseSharePrice: Float, currentSharePrice: Float, numberOfShares: Int)
     {
         self.purchaseSharePrice = purchaseSharePrice
         self.currentSharePrice  = currentSharePrice

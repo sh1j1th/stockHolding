@@ -8,8 +8,12 @@
 import Foundation
 // Initialize global variables
 var option: Int = 1
-print(loadLocalStockData("localStockData")) //not working
+var foreignStockHolding : ForeignStockHolding
+var localStockHolding : Dictionary<Int,StockHolding>
+
 print("Welcome screen")
+
+
 
 repeat {
     while option >= 0 && option <= 6 {
@@ -34,6 +38,8 @@ repeat {
         case 6:
             //func6
             print("List all stocks sorted from the lowest value to the highest value")
+        case 9:
+            option = 9
         default:
             print("Invalid choice.")
             print("Please choose from the available options.")
@@ -45,3 +51,62 @@ repeat {
 } while option != 9
 print("Exiting application..Have a nice day :)")//or just redirect
 
+
+func LoadData(){
+    
+    localStockHolding = [1: StockHolding("Royal Bank Of Canada",10,10,20),
+                         2:StockHolding("The Toronto-Dominion Bank",10,10,20),
+                         3:[
+                            "Enbridge Inc",
+                            10,
+                            10,
+                            20
+                         ],
+                         4:[
+                            "Brookfield Asset Management Inc.",
+                            10,
+                            10,
+                            20
+                         ],
+                         5:[
+                            "The Bank Of Nova Scotia",
+                            10,
+                            10,
+                            20
+                         ],
+                         6:[
+                            "Canadian Pacific Railway Limited",
+                            10,
+                            10,
+                            20
+                         ],
+                         7:[
+                            "Bank Of Montreal",
+                            10,
+                            10,
+                            20
+                         ],
+                         8:[
+                            "Canadian Natural Resources Limited",
+                            10,
+                            10,
+                            20
+                         ],
+                         9:[
+                            "Canadian National Railway Company",
+                            10,
+                            10,
+                            20
+                         ],
+                         10:[
+                            "Suncor Energy Inc.",
+                            10,
+                            10,
+                            20
+                         ]
+    ]
+}
+
+func displayStockWithLowest(){
+    
+}

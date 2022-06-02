@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15A6D91D2848FB1A000CAE0C /* ForeignStockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D9192848FB1A000CAE0C /* ForeignStockHolding.swift */; };
+		15A6D91E2848FB1A000CAE0C /* helperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D91A2848FB1A000CAE0C /* helperFunctions.swift */; };
+		15A6D91F2848FB1A000CAE0C /* StockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D91C2848FB1A000CAE0C /* StockHolding.swift */; };
+		15A6D9342849116D000CAE0C /* localStockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A6D923284908E0000CAE0C /* localStockData.json */; };
+		15A6D9352849116D000CAE0C /* foreignStockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A6D9182848FB1A000CAE0C /* foreignStockData.json */; };
+		15A6D93728491185000CAE0C /* helperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D91A2848FB1A000CAE0C /* helperFunctions.swift */; };
+		15A6D9382849119D000CAE0C /* ForeignStockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D9192848FB1A000CAE0C /* ForeignStockHolding.swift */; };
+		15A6D9392849119F000CAE0C /* StockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D91C2848FB1A000CAE0C /* StockHolding.swift */; };
+		15A6D93A284911A2000CAE0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116B3C128484B5A0040C823 /* main.swift */; };
 		6116B3C228484B5A0040C823 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116B3C128484B5A0040C823 /* main.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6116B3BC28484B5A0040C823 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		15A6D9182848FB1A000CAE0C /* foreignStockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foreignStockData.json; sourceTree = "<group>"; };
+		15A6D9192848FB1A000CAE0C /* ForeignStockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForeignStockHolding.swift; sourceTree = "<group>"; };
+		15A6D91A2848FB1A000CAE0C /* helperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helperFunctions.swift; sourceTree = "<group>"; };
+		15A6D91C2848FB1A000CAE0C /* StockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockHolding.swift; sourceTree = "<group>"; };
+		15A6D923284908E0000CAE0C /* localStockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = localStockData.json; sourceTree = "<group>"; };
+		15A6D93028491135000CAE0C /* JSONBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		6116B3BE28484B5A0040C823 /* stockHolding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = stockHolding; sourceTree = BUILT_PRODUCTS_DIR; };
 		6116B3C128484B5A0040C823 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15A6D92D28491135000CAE0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6116B3BB28484B5A0040C823 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				6116B3BE28484B5A0040C823 /* stockHolding */,
+				15A6D93028491135000CAE0C /* JSONBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +68,11 @@
 		6116B3C028484B5A0040C823 /* stockHolding */ = {
 			isa = PBXGroup;
 			children = (
+				15A6D923284908E0000CAE0C /* localStockData.json */,
+				15A6D9182848FB1A000CAE0C /* foreignStockData.json */,
+				15A6D9192848FB1A000CAE0C /* ForeignStockHolding.swift */,
+				15A6D91A2848FB1A000CAE0C /* helperFunctions.swift */,
+				15A6D91C2848FB1A000CAE0C /* StockHolding.swift */,
 				6116B3C128484B5A0040C823 /* main.swift */,
 			);
 			path = stockHolding;
@@ -65,13 +81,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15A6D92F28491135000CAE0C /* JSONBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A6D93128491135000CAE0C /* Build configuration list for PBXNativeTarget "JSONBundle" */;
+			buildPhases = (
+				15A6D92C28491135000CAE0C /* Sources */,
+				15A6D92D28491135000CAE0C /* Frameworks */,
+				15A6D92E28491135000CAE0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSONBundle;
+			productName = JSONBundle;
+			productReference = 15A6D93028491135000CAE0C /* JSONBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		6116B3BD28484B5A0040C823 /* stockHolding */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6116B3C528484B5A0040C823 /* Build configuration list for PBXNativeTarget "stockHolding" */;
 			buildPhases = (
 				6116B3BA28484B5A0040C823 /* Sources */,
 				6116B3BB28484B5A0040C823 /* Frameworks */,
-				6116B3BC28484B5A0040C823 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -92,6 +124,9 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					15A6D92F28491135000CAE0C = {
+						CreatedOnToolsVersion = 13.4;
+					};
 					6116B3BD28484B5A0040C823 = {
 						CreatedOnToolsVersion = 13.4;
 					};
@@ -111,22 +146,89 @@
 			projectRoot = "";
 			targets = (
 				6116B3BD28484B5A0040C823 /* stockHolding */,
+				15A6D92F28491135000CAE0C /* JSONBundle */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		15A6D92E28491135000CAE0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A6D9342849116D000CAE0C /* localStockData.json in Resources */,
+				15A6D9352849116D000CAE0C /* foreignStockData.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		15A6D92C28491135000CAE0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A6D93728491185000CAE0C /* helperFunctions.swift in Sources */,
+				15A6D9392849119F000CAE0C /* StockHolding.swift in Sources */,
+				15A6D93A284911A2000CAE0C /* main.swift in Sources */,
+				15A6D9382849119D000CAE0C /* ForeignStockHolding.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6116B3BA28484B5A0040C823 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6116B3C228484B5A0040C823 /* main.swift in Sources */,
+				15A6D91D2848FB1A000CAE0C /* ForeignStockHolding.swift in Sources */,
+				15A6D91F2848FB1A000CAE0C /* StockHolding.swift in Sources */,
+				15A6D91E2848FB1A000CAE0C /* helperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		15A6D93228491135000CAE0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X473CD6W24;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "spaceship-proj.JSONBundle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		15A6D93328491135000CAE0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X473CD6W24;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "spaceship-proj.JSONBundle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		6116B3C328484B5A0040C823 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -261,6 +363,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15A6D93128491135000CAE0C /* Build configuration list for PBXNativeTarget "JSONBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A6D93228491135000CAE0C /* Debug */,
+				15A6D93328491135000CAE0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6116B3B928484B5A0040C823 /* Build configuration list for PBXProject "stockHolding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
