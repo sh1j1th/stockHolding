@@ -54,7 +54,7 @@ public func loadLocalStockData(_ localStockData: [StockHolding]) -> [StockHoldin
     return stockData
 }
 
-public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding]) -> [ForeignStockHolding] {
+public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding], _ isUserData: Bool) -> [ForeignStockHolding] {
     let stockId = TextTableColumn(header: "Stock Id")
     let companyName = TextTableColumn(header: "Company Name")
     let currentSharePrice = TextTableColumn(header: "Current Share Price")
@@ -65,16 +65,25 @@ public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding]) -> [
     
     // Then create a table with the columns
     var table = TextTable(columns: [stockId, companyName, currentSharePrice, purchaseSharePrice, numberOfShares, conversionRate])
-    table.header = "Foreign Stock Information"
+    table.header = isUserData == true ? "Purchased Stock Information" : "Foreign Stock Information"
     // Then add some rows
     for (index, i) in stockData.enumerated(){
         stockData[index].stockId = index + 1
-        table.addRow(values: [index + 1,
-                              i.companyName,
-                              i.currentSharePrice,
-                              i.purchaseSharePrice,
-                              i.numberOfShares,
-                              i.conversionRate])
+        if i.conversionRate == 1.0 {
+            table.addRow(values: [index + 1,
+                                  i.companyName,
+                                  i.currentSharePrice,
+                                  i.purchaseSharePrice,
+                                  i.numberOfShares])
+        } else {
+            table.addRow(values: [index + 1,
+                                  i.companyName,
+                                  i.currentSharePrice,
+                                  i.purchaseSharePrice,
+                                  i.numberOfShares,
+                                  i.conversionRate])
+        }
+        
     }
     
     // Then render the table and use

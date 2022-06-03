@@ -8,7 +8,7 @@
 import Foundation
 
 public class ForeignStockHolding: StockHolding {
-    var conversionRate: Float = 0.0
+    var conversionRate: Float = 1.0
     
     init(foreignStockId: Int, foreignCompanyName: String, foreignPurchaseSharePrice: Float, foreignCurrentSharePrice: Float,
          foreignNumberOfShares: Int, conversionRate: Float)

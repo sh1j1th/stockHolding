@@ -12,8 +12,8 @@ import SwiftyTextTable
 //MARK: - Known issues/work pending
 ///there is only one userdata variable available now and it is of type foreignstockholding..so for local stocks, conversion rate will be 1 instead of empty..needs to be looked at
 ///please take a look at the menu...there needs to be some correction, its not exiting as expected
+///DELETE userData.swift and all those json files please, i'm lazy
 ///need to make the whole input fetch part pretty...
-///please DELETE those json files and userData.swift..thought of creating a struct but decided to reuse foreigstockholding
 ///need to complete menu implementations..one sample is there but not complete
 ///could make code more granular with more functions
 ///setup a folder structure is necessary but dont think it adds any value
@@ -40,25 +40,26 @@ var foreignStockData: [ForeignStockHolding] = [ForeignStockHolding(foreignStockI
                                                                    foreignPurchaseSharePrice: 10,foreignCurrentSharePrice:
                                                                     10,foreignNumberOfShares: 20, conversionRate: 61.30)]
 var option: Int = 1
-print("Welcome screen")
+print("******Welcome to Stock Purchase Application******")
 
 //local and foreign stock data
 //Add package - https://github.com/scottrhoyt/SwiftyTextTable.git
 
 localStockData = loadLocalStockData(localStockData)
-foreignStockData = loadForeignStockData(foreignStockData)
+foreignStockData = loadForeignStockData(foreignStockData, false)
 
 //user has to pick stock here
 var userData: [ForeignStockHolding] = []
 var userChoice = "Y"
+
 if userData.isEmpty {
-    print("Please pick some shares")
     repeat{
         purchaseStocks()
-        print("Would you like to purchase more? Press Y to purchase or N to exit")
+        print("Press Y to purchase more stocks or any other key to exit: ", terminator: "")
         userChoice = readLine() ?? "N"
     }while userChoice.uppercased() == "Y"
-    loadForeignStockData(userData) //show what user purchased so far, no need to modify any data
+    print("\n\nHere is your purchase information")
+    loadForeignStockData(userData, true) //show what user purchased so far, no need to modify any data
 }
 
 repeat {
@@ -94,32 +95,33 @@ repeat {
     }
     
 } while option != 9
-print("Exiting application..Have a nice day :)")//or just redirect
+print("\nExiting application..Have a nice day :)")//or just redirect
 
 
 
 public func purchaseStocks() {
     //pick a stock type
-    print("Please select a stock type\n 1. Local\t\t\t2. Foreign")
+    print("\nAvailable stock types: \n 1. Local\t\t\t2. Foreign")
+    print("\nChoose a stock type: ", terminator: "")
     let typeChoice = readLine()
     
     //enter stock id from the table
-    print("Please enter the stockId")
+    print("\nEnter the stockId: ", terminator: "")
     if let stockId = readLine(){
         //if local stock
         if typeChoice == "1"{
             //get corresponding stock data
             let result = localStockData.filter { $0.stockId == Int(stockId) }
             if result.isEmpty{
-                print("No such stock available")
+                print("Incorrect stock id. No such stock available.\n")
             } else {
-                print("\(localStockData[Int(stockId)!].numberOfShares) shares available for purchase\n")
-                print("Please enter no.of shares")
+                print("\(localStockData[Int(stockId)!].companyName) has \(localStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                print("Enter no.of shares to purchase: ", terminator: "")
                 let sharesPurchased = Int(readLine() ?? "0") ?? 0
                 //check shares are within available limit
-                if sharesPurchased <= result[0].numberOfShares{
+                if sharesPurchased <= localStockData[Int(stockId)!].numberOfShares{
                     localStockData[Int(stockId)!].numberOfShares -= sharesPurchased
-                    print("\(localStockData[Int(stockId)!].numberOfShares) shares remaining")
+                    print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(localStockData[Int(stockId)!].companyName) successfully.\n")
                     //if picking same shares again, check with company name and increment or else append as new
                     if userData.contains(where: {$0.companyName == result[0].companyName}){
                         let existingData = userData.filter({$0.companyName == result[0].companyName})
@@ -130,11 +132,11 @@ public func purchaseStocks() {
                                                             foreignPurchaseSharePrice:result[0].purchaseSharePrice,
                                                             foreignCurrentSharePrice:result[0].currentSharePrice,
                                                             foreignNumberOfShares: sharesPurchased,
-                                                            conversionRate: 1))
+                                                            conversionRate: 1.0))
                     }
                     
                 } else {
-                    print("Number of shares exceeds availability, please retry")
+                    print("Number of shares exceeds availability, please retry.\n")
                 }
             }
             
@@ -142,14 +144,14 @@ public func purchaseStocks() {
         } else if typeChoice == "2" {
             let result = foreignStockData.filter { $0.stockId == Int(stockId) }
             if result.isEmpty{
-                print("No such stock available")
+                print("Incorrect stock id. No such stock available.\n")
             } else {
-                print("\(foreignStockData[Int(stockId)!].numberOfShares) shares available for purchase\n")
-                print("Please enter no.of shares")
+                print("\(foreignStockData[Int(stockId)!].companyName) has \(foreignStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                print("Enter no.of shares: ", terminator: "")
                 let sharesPurchased = Int(readLine() ?? "0") ?? 0
-                if sharesPurchased <= result[0].numberOfShares{
+                if sharesPurchased <= foreignStockData[Int(stockId)!].numberOfShares{
                     foreignStockData[Int(stockId)!].numberOfShares -= sharesPurchased
-                    print("\(foreignStockData[Int(stockId)!].numberOfShares) shares remaining")
+                    print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(foreignStockData[Int(stockId)!].companyName) successfully.\n")
                     if userData.contains(where: {$0.companyName == result[0].companyName}){
                         let existingData = userData.filter({$0.companyName == result[0].companyName})
                         userData[existingData[0].stockId].numberOfShares += sharesPurchased
@@ -162,7 +164,7 @@ public func purchaseStocks() {
                                                             conversionRate: result[0].conversionRate))
                     }
                 } else {
-                    print("Number of shares exceeds availability, please retry")
+                    print("Number of shares exceeds availability, please retry.\n")
                 }
             }
         }
