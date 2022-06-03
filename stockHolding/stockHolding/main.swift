@@ -59,10 +59,12 @@ repeat {
             //func1
             print("\nDisplay stock with lowest value")
             let sortedUserData = userData.sorted(by: {$0.valueInDollars() < $1.valueInDollars()})
-            showUserData([sortedUserData[0]],"(Stock with lowest value)")
+            showUserData([sortedUserData[0]], "(Stock with lowest value)")
         case 2:
             //func2
             print("\nDisplay stock with highest value")
+            let sortedUserData = userData.sorted(by: {$0.valueInDollars() > $1.valueInDollars()})
+            showUserData([sortedUserData[0]],"(Stock with highest value)")
         case 3:
             //func3
             print("\nDisplay the most profitable stock")
