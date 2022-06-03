@@ -12,6 +12,7 @@
 		15A6D963284A76BA000CAE0C /* ForeignStockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D95F284A76BA000CAE0C /* ForeignStockHolding.swift */; };
 		15A6D964284A76BA000CAE0C /* helperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D960284A76BA000CAE0C /* helperFunctions.swift */; };
 		6116B3C228484B5A0040C823 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116B3C128484B5A0040C823 /* main.swift */; };
+		61AC5057284A77C8006E3EA3 /* SwiftyTextTable in Frameworks */ = {isa = PBXBuildFile; productRef = 61AC5056284A77C8006E3EA3 /* SwiftyTextTable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61AC5057284A77C8006E3EA3 /* SwiftyTextTable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = stockHolding;
+			packageProductDependencies = (
+				61AC5056284A77C8006E3EA3 /* SwiftyTextTable */,
+			);
 			productName = stockHolding;
 			productReference = 6116B3BE28484B5A0040C823 /* stockHolding */;
 			productType = "com.apple.product-type.tool";
@@ -122,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 6116B3B528484B5A0040C823;
+			packageReferences = (
+				61AC5055284A77C8006E3EA3 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */,
+			);
 			productRefGroup = 6116B3BF28484B5A0040C823 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +308,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61AC5055284A77C8006E3EA3 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scottrhoyt/SwiftyTextTable.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61AC5056284A77C8006E3EA3 /* SwiftyTextTable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61AC5055284A77C8006E3EA3 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */;
+			productName = SwiftyTextTable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6116B3B628484B5A0040C823 /* Project object */;
 }
