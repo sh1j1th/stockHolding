@@ -54,7 +54,7 @@ public func loadLocalStockData(_ localStockData: [StockHolding]) -> [StockHoldin
     return stockData
 }
 
-public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding], _ isUserData: Bool) -> [ForeignStockHolding] {
+public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding]) -> [ForeignStockHolding] {
     let stockId = TextTableColumn(header: "Stock Id")
     let companyName = TextTableColumn(header: "Company Name")
     let currentSharePrice = TextTableColumn(header: "Current Share Price")
@@ -65,25 +65,46 @@ public func loadForeignStockData(_ foreignStockData: [ForeignStockHolding], _ is
     
     // Then create a table with the columns
     var table = TextTable(columns: [stockId, companyName, currentSharePrice, purchaseSharePrice, numberOfShares, conversionRate])
-    table.header = isUserData == true ? "Purchased Stock Information" : "Foreign Stock Information"
+    table.header = "Foreign Stock Information"
     // Then add some rows
     for (index, i) in stockData.enumerated(){
         stockData[index].stockId = index + 1
-        if i.conversionRate == 1.0 {
-            table.addRow(values: [index + 1,
-                                  i.companyName,
-                                  i.currentSharePrice,
-                                  i.purchaseSharePrice,
-                                  i.numberOfShares])
-        } else {
             table.addRow(values: [index + 1,
                                   i.companyName,
                                   i.currentSharePrice,
                                   i.purchaseSharePrice,
                                   i.numberOfShares,
                                   i.conversionRate])
-        }
-        
+    }
+    
+    // Then render the table and use
+    let tableString = table.render()
+    print(tableString)
+    return stockData
+}
+
+public func showUserData(_ stockData: [ForeignStockHolding],_ subheading : String) -> [ForeignStockHolding] {
+    let stockId = TextTableColumn(header: "Stock#")
+    let companyName = TextTableColumn(header: "Company Name")
+    let currentSharePrice = TextTableColumn(header: "Current Share Price")
+    let purchaseSharePrice = TextTableColumn(header: "Purchase Share Price")
+    let numberOfShares = TextTableColumn(header: "Number of Shares")
+    let totalValue = TextTableColumn(header: "Total Value (CAD)")
+    let totalCost = TextTableColumn(header: "Total Cost (CAD)")
+    
+    // Then create a table with the columns
+    var table = TextTable(columns: [stockId, companyName, currentSharePrice, purchaseSharePrice, numberOfShares, totalValue, totalCost])
+    table.header = "Purchased Stock Information" + " " + subheading
+    // Then add some rows
+    for (index, i) in stockData.enumerated(){
+        stockData[index].stockId = index + 1
+            table.addRow(values: [index + 1,
+                                  i.companyName,
+                                  i.currentSharePrice,
+                                  i.purchaseSharePrice,
+                                  i.numberOfShares,
+                                  i.valueInDollars(),
+                                  i.costInDollars()])
     }
     
     // Then render the table and use

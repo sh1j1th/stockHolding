@@ -9,18 +9,6 @@ import Foundation
 import SwiftyTextTable
 
 
-//MARK: - Known issues/work pending
-///there is only one userdata variable available now and it is of type foreignstockholding..so for local stocks, conversion rate will be 1 instead of empty..needs to be looked at
-///please take a look at the menu...there needs to be some correction, its not exiting as expected
-///DELETE userData.swift and all those json files please, i'm lazy
-///need to make the whole input fetch part pretty...
-///need to complete menu implementations..one sample is there but not complete
-///could make code more granular with more functions
-///setup a folder structure is necessary but dont think it adds any value
-///dont move purchaseStocks() from main..makes accessing and modifying localStockData and foreignStockData harder
-///need to handle more invalid value scenarios, and again, dont think it adds any value at the end
-
-// data is currently in the form of array so as to make sorting easy
 var localStockData: [StockHolding] = [StockHolding(stockId: 1, companyName: "Royal Bank Of Canada",purchaseSharePrice:
                                                     10,currentSharePrice: 10,numberOfShares: 20),
                                       StockHolding(stockId: 2, companyName: "The Toronto-Dominion Bank",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
@@ -46,7 +34,7 @@ print("******Welcome to Stock Purchase Application******")
 //Add package - https://github.com/scottrhoyt/SwiftyTextTable.git
 
 localStockData = loadLocalStockData(localStockData)
-foreignStockData = loadForeignStockData(foreignStockData, false)
+foreignStockData = loadForeignStockData(foreignStockData)
 
 //user has to pick stock here
 var userData: [ForeignStockHolding] = []
@@ -59,7 +47,7 @@ if userData.isEmpty {
         userChoice = readLine() ?? "N"
     }while userChoice.uppercased() == "Y"
     print("\n\nHere is your purchase information")
-    loadForeignStockData(userData, true) //show what user purchased so far, no need to modify any data
+    showUserData(userData, "") //show what user purchased so far, no need to modify any data
 }
 
 repeat {
@@ -69,23 +57,30 @@ repeat {
         switch option { //this needs to be completed
         case 1:
             //func1
-            print("Display stock with lowest value")
-            print(userData.flatMap({$0.valueInDollars()}).min())
+            print("\nDisplay stock with lowest value")
+            let sortedUserData = userData.sorted(by: {$0.valueInDollars() < $1.valueInDollars()})
+            showUserData([sortedUserData[0]],"(Stock with lowest value)")
         case 2:
             //func2
-            print("Display stock with highest value")
+            print("\nDisplay stock with highest value")
         case 3:
             //func3
-            print("Display the most profitable stock")
+            print("\nDisplay the most profitable stock")
         case 4:
             //func4
-            print("Display the least profitable stock")
+            print("\nDisplay the least profitable stock")
         case 5:
             //func5
-            print("List all stocks sorted by company name (A-Z)")
+            print("\nList all stocks sorted by company name (A-Z)")
+            let sortedUserData = userData.sorted(by: {$0.companyName < $1.companyName})
+            showUserData(sortedUserData,"(All stocks sorted by company name (A-Z))")
         case 6:
             //func6
-            print("List all stocks sorted from the lowest value to the highest value")
+            print("\nList all stocks sorted from the lowest value to the highest value")
+            let sortedUserData = userData.sorted(by: {$0.valueInDollars() < $1.valueInDollars()})
+            showUserData(sortedUserData,"(All stocks sorted from the lowest value to the highest value)")
+        case 9:
+            option = 9
         default:
             print("Invalid choice.")
             print("Please choose from the available options.")
@@ -105,68 +100,72 @@ public func purchaseStocks() {
     print("\nChoose a stock type: ", terminator: "")
     let typeChoice = readLine()
     
-    //enter stock id from the table
-    print("\nEnter the stockId: ", terminator: "")
-    if let stockId = readLine(){
-        //if local stock
-        if typeChoice == "1"{
-            //get corresponding stock data
-            let result = localStockData.filter { $0.stockId == Int(stockId) }
-            if result.isEmpty{
-                print("Incorrect stock id. No such stock available.\n")
-            } else {
-                print("\(localStockData[Int(stockId)!].companyName) has \(localStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
-                print("Enter no.of shares to purchase: ", terminator: "")
-                let sharesPurchased = Int(readLine() ?? "0") ?? 0
-                //check shares are within available limit
-                if sharesPurchased <= localStockData[Int(stockId)!].numberOfShares{
-                    localStockData[Int(stockId)!].numberOfShares -= sharesPurchased
-                    print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(localStockData[Int(stockId)!].companyName) successfully.\n")
-                    //if picking same shares again, check with company name and increment or else append as new
-                    if userData.contains(where: {$0.companyName == result[0].companyName}){
-                        let existingData = userData.filter({$0.companyName == result[0].companyName})
-                        userData[existingData[0].stockId].numberOfShares += sharesPurchased
-                    } else {
-                        userData.append(ForeignStockHolding(foreignStockId: userData.count,
-                                                            foreignCompanyName: result[0].companyName,
-                                                            foreignPurchaseSharePrice:result[0].purchaseSharePrice,
-                                                            foreignCurrentSharePrice:result[0].currentSharePrice,
-                                                            foreignNumberOfShares: sharesPurchased,
-                                                            conversionRate: 1.0))
-                    }
-                    
+    if typeChoice == "1" || typeChoice == "2"{
+        //enter stock id from the table
+        print("\nEnter the stockId: ", terminator: "")
+        if let stockId = readLine(){
+            //if local stock
+            if typeChoice == "1"{
+                //get corresponding stock data
+                let result = localStockData.filter { $0.stockId == Int(stockId) }
+                if result.isEmpty{
+                    print("Incorrect stock id. No such stock available.\n")
                 } else {
-                    print("Number of shares exceeds availability, please retry.\n")
+                    print("\(localStockData[Int(stockId)!].companyName) has \(localStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                    print("Enter no.of shares to purchase: ", terminator: "")
+                    let sharesPurchased = Int(readLine() ?? "0") ?? 0
+                    //check shares are within available limit
+                    if sharesPurchased <= localStockData[Int(stockId)!].numberOfShares{
+                        localStockData[Int(stockId)!].numberOfShares -= sharesPurchased
+                        print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(localStockData[Int(stockId)!].companyName) successfully.\n")
+                        //if picking same shares again, check with company name and increment or else append as new
+                        if userData.contains(where: {$0.companyName == result[0].companyName}){
+                            let existingData = userData.filter({$0.companyName == result[0].companyName})
+                            userData[existingData[0].stockId].numberOfShares += sharesPurchased
+                        } else {
+                            userData.append(ForeignStockHolding(foreignStockId: userData.count,
+                                                                foreignCompanyName: result[0].companyName,
+                                                                foreignPurchaseSharePrice:result[0].purchaseSharePrice,
+                                                                foreignCurrentSharePrice:result[0].currentSharePrice,
+                                                                foreignNumberOfShares: sharesPurchased,
+                                                                conversionRate: 1.0))
+                        }
+                        
+                    } else {
+                        print("Number of shares exceeds availability, please retry.\n")
+                    }
                 }
-            }
-            
-            //same logic as above, could be separated into a function
-        } else if typeChoice == "2" {
-            let result = foreignStockData.filter { $0.stockId == Int(stockId) }
-            if result.isEmpty{
-                print("Incorrect stock id. No such stock available.\n")
-            } else {
-                print("\(foreignStockData[Int(stockId)!].companyName) has \(foreignStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
-                print("Enter no.of shares: ", terminator: "")
-                let sharesPurchased = Int(readLine() ?? "0") ?? 0
-                if sharesPurchased <= foreignStockData[Int(stockId)!].numberOfShares{
-                    foreignStockData[Int(stockId)!].numberOfShares -= sharesPurchased
-                    print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(foreignStockData[Int(stockId)!].companyName) successfully.\n")
-                    if userData.contains(where: {$0.companyName == result[0].companyName}){
-                        let existingData = userData.filter({$0.companyName == result[0].companyName})
-                        userData[existingData[0].stockId].numberOfShares += sharesPurchased
-                    } else {
-                        userData.append(ForeignStockHolding(foreignStockId: userData.count,
-                                                            foreignCompanyName: result[0].companyName,
-                                                            foreignPurchaseSharePrice:result[0].purchaseSharePrice,
-                                                            foreignCurrentSharePrice:result[0].currentSharePrice,
-                                                            foreignNumberOfShares: sharesPurchased,
-                                                            conversionRate: result[0].conversionRate))
-                    }
+                
+                //same logic as above, could be separated into a function
+            } else if typeChoice == "2" {
+                let result = foreignStockData.filter { $0.stockId == Int(stockId) }
+                if result.isEmpty{
+                    print("Incorrect stock id. No such stock available.\n")
                 } else {
-                    print("Number of shares exceeds availability, please retry.\n")
+                    print("\(foreignStockData[Int(stockId)!].companyName) has \(foreignStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                    print("Enter no.of shares: ", terminator: "")
+                    let sharesPurchased = Int(readLine() ?? "0") ?? 0
+                    if sharesPurchased <= foreignStockData[Int(stockId)!].numberOfShares{
+                        foreignStockData[Int(stockId)!].numberOfShares -= sharesPurchased
+                        print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(foreignStockData[Int(stockId)!].companyName) successfully.\n")
+                        if userData.contains(where: {$0.companyName == result[0].companyName}){
+                            let existingData = userData.filter({$0.companyName == result[0].companyName})
+                            userData[existingData[0].stockId].numberOfShares += sharesPurchased
+                        } else {
+                            userData.append(ForeignStockHolding(foreignStockId: userData.count,
+                                                                foreignCompanyName: result[0].companyName,
+                                                                foreignPurchaseSharePrice:result[0].purchaseSharePrice,
+                                                                foreignCurrentSharePrice:result[0].currentSharePrice,
+                                                                foreignNumberOfShares: sharesPurchased,
+                                                                conversionRate: result[0].conversionRate))
+                        }
+                    } else {
+                        print("Number of shares exceeds availability. Please retry.\n")
+                    }
                 }
             }
         }
+    }else{
+        print("Invalid stock type. Please retry. \n")
     }
 }
