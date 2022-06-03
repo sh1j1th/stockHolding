@@ -66,9 +66,15 @@ repeat {
         case 3:
             //func3
             print("\nDisplay the most profitable stock")
+            let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice > $1.currentSharePrice - $1.purchaseSharePrice});
+
+            showUserData([sortedUserData[0]], "(Most profitable stock)")
         case 4:
             //func4
             print("\nDisplay the least profitable stock")
+            let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice < $1.currentSharePrice - $1.purchaseSharePrice});
+
+            showUserData([sortedUserData[0]], "(Least profitable stock)")
         case 5:
             //func5
             print("\nList all stocks sorted by company name (A-Z)")
@@ -88,7 +94,7 @@ repeat {
             break
         }
     }
-    
+
 } while option != 9
 print("\nExiting application..Have a nice day :)")//or just redirect
 
@@ -99,7 +105,7 @@ public func purchaseStocks() {
     print("\nAvailable stock types: \n 1. Local\t\t\t2. Foreign")
     print("\nChoose a stock type: ", terminator: "")
     let typeChoice = readLine()
-    
+
     if typeChoice == "1" || typeChoice == "2"{
         //enter stock id from the table
         print("\nEnter the stockId: ", terminator: "")
@@ -130,12 +136,12 @@ public func purchaseStocks() {
                                                                 foreignNumberOfShares: sharesPurchased,
                                                                 conversionRate: 1.0))
                         }
-                        
+
                     } else {
                         print("Number of shares exceeds availability, please retry.\n")
                     }
                 }
-                
+
                 //same logic as above, could be separated into a function
             } else if typeChoice == "2" {
                 let result = foreignStockData.filter { $0.stockId == Int(stockId) }
