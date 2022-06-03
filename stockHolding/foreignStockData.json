@@ -1,0 +1,23 @@
+[
+    {
+        "companyName": "RELIANCE INDUSTRIES LTD.",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20,
+        "conversionRates": 61.23
+    },
+    {
+        "companyName": "TATA CONSULTANCY SERVICES LTD.",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20,
+        "conversionRates": 61.23
+    },
+    {
+        "companyName": "INFOSYS LTD.",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20,
+        "conversionRates": 61.23
+    }
+]

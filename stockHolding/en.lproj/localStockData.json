@@ -1,0 +1,62 @@
+[
+    {
+        "companyName": "Royal Bank Of Canada",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "The Toronto-Dominion Bank",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Enbridge Inc",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Brookfield Asset Management Inc.",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "The Bank Of Nova Scotia",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Canadian Pacific Railway Limited",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Bank Of Montreal",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Canadian Natural Resources Limited",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Canadian National Railway Company",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    },
+    {
+        "companyName": "Suncor Energy Inc.",
+        "currentSharePrice": 10.0,
+        "purchaseSharePrice": 10.0,
+        "numberOfShares": 20
+    }
+]
