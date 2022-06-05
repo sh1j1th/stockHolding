@@ -69,15 +69,23 @@ repeat {
             //func3
             print("\nDisplay the most profitable stock")
             let sortedUserData = userData.sorted(by: {$0.valueInDollars() - $0.costInDollars() > $1.valueInDollars() - $1.costInDollars()});
-            //TODO: Check if multiple stocks have same profitable amount.
+            let profitableStock = sortedUserData[0];
+            
+            let profitableStocks = sortedUserData.filter {
+                $0.valueInDollars() - $0.costInDollars() == profitableStock.valueInDollars() - profitableStock.costInDollars()
+            }
 
-            showUserData([sortedUserData[0]], "(Most profitable stock)")
+            showUserData(profitableStocks, "(Most profitable stock)")
         case 4:
             //func4
             print("\nDisplay the least profitable stock")
             let sortedUserData = userData.sorted(by: {$0.valueInDollars() - $0.costInDollars() < $1.valueInDollars() - $1.costInDollars() })
+            let leastProfitableStock = sortedUserData[0];
+            let leastProfitableStocks = sortedUserData.filter {
+                $0.valueInDollars() - $0.costInDollars() == leastProfitableStock.valueInDollars() - leastProfitableStock.costInDollars()
+            }
 
-            showUserData([sortedUserData[0]], "(Least profitable stock)")
+            showUserData(leastProfitableStocks, "(Least profitable stock)")
         case 5:
             //func5
             print("\nList all stocks sorted by company name (A-Z)")
