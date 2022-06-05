@@ -10,16 +10,16 @@ import SwiftyTextTable
 
 
 var localStockData: [StockHolding] = [StockHolding(stockId: 1, companyName: "Royal Bank Of Canada",purchaseSharePrice:
-                                                    10,currentSharePrice: 10,numberOfShares: 20),
+                                                    10,currentSharePrice: 20,numberOfShares: 20),
                                       StockHolding(stockId: 2, companyName: "The Toronto-Dominion Bank",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
-                                      StockHolding(stockId: 3, companyName: "Enbridge Inc",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
+                                      StockHolding(stockId: 3, companyName: "Enbridge Inc",purchaseSharePrice: 40,currentSharePrice: 5,numberOfShares: 20),
                                       StockHolding(stockId: 4, companyName: "Brookfield Asset Management Inc.",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
-                                      StockHolding(stockId: 5, companyName: "The Bank Of Nova Scotia",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
+                                      StockHolding(stockId: 5, companyName: "The Bank Of Nova Scotia",purchaseSharePrice: 15,currentSharePrice: 55,numberOfShares: 20),
                                       StockHolding(stockId: 6, companyName: "Canadian Pacific Railway Limited",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
                                       StockHolding(stockId: 7, companyName: "Bank Of Montreal",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
                                       StockHolding(stockId: 8, companyName: "Canadian Natural Resources Limited",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
                                       StockHolding(stockId: 9, companyName: "Canadian National Railway Company",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20),
-                                      StockHolding(stockId: 10, companyName: "Suncor Energy Inc.",purchaseSharePrice: 10,currentSharePrice: 10,numberOfShares: 20)]
+                                      StockHolding(stockId: 10, companyName: "Suncor Energy Inc.",purchaseSharePrice: 15,currentSharePrice: 55,numberOfShares: 20)]
 
 var foreignStockData: [ForeignStockHolding] = [ForeignStockHolding(foreignStockId: 1, foreignCompanyName: "RELIANCE INDUSTRIES LTD.",                                                                                  foreignPurchaseSharePrice:10,foreignCurrentSharePrice:
                                                                     10,foreignNumberOfShares: 20, conversionRate: 61.30),
@@ -68,13 +68,15 @@ repeat {
         case 3:
             //func3
             print("\nDisplay the most profitable stock")
-            let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice > $1.currentSharePrice - $1.purchaseSharePrice});
+            // let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice > $1.currentSharePrice - $1.purchaseSharePrice});
+            let sortedUserData = userData.sorted(by: {$0.valueInDollars() - $0.costInDollars() > $1.valueInDollars() - $1.costInDollars()});
 
             showUserData([sortedUserData[0]], "(Most profitable stock)")
         case 4:
             //func4
             print("\nDisplay the least profitable stock")
-            let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice < $1.currentSharePrice - $1.purchaseSharePrice});
+            // let sortedUserData = userData.sorted(by: {$0.currentSharePrice - $0.purchaseSharePrice < $1.currentSharePrice - $1.purchaseSharePrice});
+            let sortedUserData = userData.sorted(by: {$0.valueInDollars() - $0.costInDollars() < $1.valueInDollars() - $1.costInDollars() })
 
             showUserData([sortedUserData[0]], "(Least profitable stock)")
         case 5:
@@ -119,12 +121,13 @@ public func purchaseStocks() {
                 if result.isEmpty{
                     print("Incorrect stock id. No such stock available.\n")
                 } else {
-                    print("\(localStockData[Int(stockId)!].companyName) has \(localStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                    let mappedStockId = Int(stockId)! - 1;
+                    print("\(localStockData[mappedStockId].companyName) has \(localStockData[mappedStockId].numberOfShares) shares available for purchase.\n")
                     print("Enter no.of shares to purchase: ", terminator: "")
                     let sharesPurchased = Int(readLine() ?? "0") ?? 0
                     //check shares are within available limit
-                    if sharesPurchased <= localStockData[Int(stockId)!].numberOfShares{
-                        localStockData[Int(stockId)!].numberOfShares -= sharesPurchased
+                    if sharesPurchased <= localStockData[mappedStockId].numberOfShares{
+                        localStockData[mappedStockId].numberOfShares -= sharesPurchased
                         print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(localStockData[Int(stockId)!].companyName) successfully.\n")
                         //if picking same shares again, check with company name and increment or else append as new
                         if userData.contains(where: {$0.companyName == result[0].companyName}){
@@ -150,11 +153,12 @@ public func purchaseStocks() {
                 if result.isEmpty{
                     print("Incorrect stock id. No such stock available.\n")
                 } else {
-                    print("\(foreignStockData[Int(stockId)!].companyName) has \(foreignStockData[Int(stockId)!].numberOfShares) shares available for purchase.\n")
+                    let mappedStockId = Int(stockId)! - 1;
+                    print("\(foreignStockData[mappedStockId].companyName) has \(foreignStockData[mappedStockId].numberOfShares) shares available for purchase.\n")
                     print("Enter no.of shares: ", terminator: "")
                     let sharesPurchased = Int(readLine() ?? "0") ?? 0
-                    if sharesPurchased <= foreignStockData[Int(stockId)!].numberOfShares{
-                        foreignStockData[Int(stockId)!].numberOfShares -= sharesPurchased
+                    if sharesPurchased <= foreignStockData[mappedStockId].numberOfShares{
+                        foreignStockData[mappedStockId].numberOfShares -= sharesPurchased
                         print("Congrats!!.. You purchased \(sharesPurchased) share(s) of \(foreignStockData[Int(stockId)!].companyName) successfully.\n")
                         if userData.contains(where: {$0.companyName == result[0].companyName}){
                             let existingData = userData.filter({$0.companyName == result[0].companyName})
