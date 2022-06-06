@@ -8,22 +8,19 @@
 import Foundation
 
 public class ForeignStockHolding: StockHolding {
-    var conversionRate: Float = 0.0
+    var conversionRate: Float = 1.0
     
-    init(foreignPurchaseSharePrice: Float, foreignCurrentSharePrice: Float,
-         foreignNumberOfShares: Int, foreignCompanyName: String, conversionRate: Float)
+    init(foreignStockId: Int, foreignCompanyName: String, foreignPurchaseSharePrice: Float, foreignCurrentSharePrice: Float,
+         foreignNumberOfShares: Int, conversionRate: Float)
     {
         self.conversionRate = conversionRate
         super.init(
+            stockId: foreignStockId,
+            companyName: foreignCompanyName,
             purchaseSharePrice: foreignPurchaseSharePrice,
             currentSharePrice: foreignCurrentSharePrice,
-            numberOfShares: foreignNumberOfShares,
-            companyName: foreignCompanyName
+            numberOfShares: foreignNumberOfShares
         )
-    }
-    
-    required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
     }
     
     override public func costInDollars () -> Float

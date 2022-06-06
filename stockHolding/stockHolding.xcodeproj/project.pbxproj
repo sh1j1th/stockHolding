@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6116B3C228484B5A0040C823 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116B3C128484B5A0040C823 /* main.swift */; };
+		D8077E1E284AD0DE001FDBC2 /* ForeignStockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */; };
+		D8077E1F284AD0DE001FDBC2 /* helperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */; };
+		D8077E21284AD0DE001FDBC2 /* StockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */; };
+		D8077E24284AD0FF001FDBC2 /* SwiftyTextTable in Frameworks */ = {isa = PBXBuildFile; productRef = D8077E23284AD0FF001FDBC2 /* SwiftyTextTable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		6116B3BE28484B5A0040C823 /* stockHolding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = stockHolding; sourceTree = BUILT_PRODUCTS_DIR; };
 		6116B3C128484B5A0040C823 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForeignStockHolding.swift; sourceTree = "<group>"; };
+		D8077E19284AD0DE001FDBC2 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
+		D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helperFunctions.swift; sourceTree = "<group>"; };
+		D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockHolding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8077E24284AD0FF001FDBC2 /* SwiftyTextTable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +66,10 @@
 		6116B3C028484B5A0040C823 /* stockHolding */ = {
 			isa = PBXGroup;
 			children = (
+				D8077E19284AD0DE001FDBC2 /* en.lproj */,
+				D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */,
+				D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */,
+				D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */,
 				6116B3C128484B5A0040C823 /* main.swift */,
 			);
 			path = stockHolding;
@@ -78,6 +91,9 @@
 			dependencies = (
 			);
 			name = stockHolding;
+			packageProductDependencies = (
+				D8077E23284AD0FF001FDBC2 /* SwiftyTextTable */,
+			);
 			productName = stockHolding;
 			productReference = 6116B3BE28484B5A0040C823 /* stockHolding */;
 			productType = "com.apple.product-type.tool";
@@ -106,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 6116B3B528484B5A0040C823;
+			packageReferences = (
+				D8077E22284AD0FF001FDBC2 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */,
+			);
 			productRefGroup = 6116B3BF28484B5A0040C823 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -120,7 +139,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8077E21284AD0DE001FDBC2 /* StockHolding.swift in Sources */,
 				6116B3C228484B5A0040C823 /* main.swift in Sources */,
+				D8077E1E284AD0DE001FDBC2 /* ForeignStockHolding.swift in Sources */,
+				D8077E1F284AD0DE001FDBC2 /* helperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +302,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8077E22284AD0FF001FDBC2 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scottrhoyt/SwiftyTextTable.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8077E23284AD0FF001FDBC2 /* SwiftyTextTable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8077E22284AD0FF001FDBC2 /* XCRemoteSwiftPackageReference "SwiftyTextTable" */;
+			productName = SwiftyTextTable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6116B3B628484B5A0040C823 /* Project object */;
 }

@@ -6,23 +6,23 @@
 //
 
 import Foundation
-public class StockHolding: Codable{
+public class StockHolding {
     
-    // Variable declaration
+    var stockId: Int //extra param
     var purchaseSharePrice: Float = 0.0
     var currentSharePrice: Float = 0.0
     var numberOfShares: Int = 0
     var companyName: String = ""
     
-    init(purchaseSharePrice: Float, currentSharePrice: Float, numberOfShares: Int, companyName: String)
+    init(stockId: Int,companyName: String, purchaseSharePrice: Float, currentSharePrice: Float, numberOfShares: Int)
     {
+        self.stockId = stockId
         self.purchaseSharePrice = purchaseSharePrice
         self.currentSharePrice  = currentSharePrice
         self.numberOfShares     = numberOfShares
         self.companyName        = companyName
     }
     
-    // Closures
     public func costInDollars () -> Float
     {
         return purchaseSharePrice * Float(numberOfShares)
