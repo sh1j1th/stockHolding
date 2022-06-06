@@ -10,7 +10,6 @@
 		6116B3C228484B5A0040C823 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6116B3C128484B5A0040C823 /* main.swift */; };
 		D8077E1E284AD0DE001FDBC2 /* ForeignStockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */; };
 		D8077E1F284AD0DE001FDBC2 /* helperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */; };
-		D8077E20284AD0DE001FDBC2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E1C284AD0DE001FDBC2 /* UserData.swift */; };
 		D8077E21284AD0DE001FDBC2 /* StockHolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */; };
 		D8077E24284AD0FF001FDBC2 /* SwiftyTextTable in Frameworks */ = {isa = PBXBuildFile; productRef = D8077E23284AD0FF001FDBC2 /* SwiftyTextTable */; };
 /* End PBXBuildFile section */
@@ -33,8 +32,6 @@
 		D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForeignStockHolding.swift; sourceTree = "<group>"; };
 		D8077E19284AD0DE001FDBC2 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helperFunctions.swift; sourceTree = "<group>"; };
-		D8077E1B284AD0DE001FDBC2 /* foreignStockData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foreignStockData.json; sourceTree = "<group>"; };
-		D8077E1C284AD0DE001FDBC2 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockHolding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,11 +67,9 @@
 			isa = PBXGroup;
 			children = (
 				D8077E19284AD0DE001FDBC2 /* en.lproj */,
-				D8077E1B284AD0DE001FDBC2 /* foreignStockData.json */,
 				D8077E18284AD0DE001FDBC2 /* ForeignStockHolding.swift */,
 				D8077E1A284AD0DE001FDBC2 /* helperFunctions.swift */,
 				D8077E1D284AD0DE001FDBC2 /* StockHolding.swift */,
-				D8077E1C284AD0DE001FDBC2 /* UserData.swift */,
 				6116B3C128484B5A0040C823 /* main.swift */,
 			);
 			path = stockHolding;
@@ -147,7 +142,6 @@
 				D8077E21284AD0DE001FDBC2 /* StockHolding.swift in Sources */,
 				6116B3C228484B5A0040C823 /* main.swift in Sources */,
 				D8077E1E284AD0DE001FDBC2 /* ForeignStockHolding.swift in Sources */,
-				D8077E20284AD0DE001FDBC2 /* UserData.swift in Sources */,
 				D8077E1F284AD0DE001FDBC2 /* helperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
