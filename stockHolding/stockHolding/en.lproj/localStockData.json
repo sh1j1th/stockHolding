@@ -1,62 +1,72 @@
 [
     {
+        
         "companyName": "Royal Bank Of Canada",
-        "currentSharePrice": 10.0,
+        "currentSharePrice": 20.0,
         "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "numberOfShares": 50
     },
     {
+        
         "companyName": "The Toronto-Dominion Bank",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
+        "currentSharePrice": 40.0,
+        "purchaseSharePrice": 30.0,
         "numberOfShares": 20
     },
     {
+        
         "companyName": "Enbridge Inc",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 30.0,
+        "purchaseSharePrice": 15.0,
+        "numberOfShares": 10
     },
     {
+        
         "companyName": "Brookfield Asset Management Inc.",
         "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "purchaseSharePrice": 20.0,
+        "numberOfShares": 25
     },
     {
+        
         "companyName": "The Bank Of Nova Scotia",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 55.0,
+        "purchaseSharePrice": 102.0,
+        "numberOfShares": 10
     },
     {
+        
         "companyName": "Canadian Pacific Railway Limited",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 60.0,
+        "purchaseSharePrice": 40.0,
+        "numberOfShares": 15
     },
     {
+        
         "companyName": "Bank Of Montreal",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 34.0,
+        "purchaseSharePrice": 20.0,
+        "numberOfShares": 22
     },
     {
+        
         "companyName": "Canadian Natural Resources Limited",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 100.0,
+        "purchaseSharePrice": 110.0,
+        "numberOfShares": 30
     },
     {
+        
         "companyName": "Canadian National Railway Company",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 90.0,
+        "purchaseSharePrice": 110.0,
+        "numberOfShares": 8
     },
     {
+        
         "companyName": "Suncor Energy Inc.",
-        "currentSharePrice": 10.0,
-        "purchaseSharePrice": 10.0,
-        "numberOfShares": 20
+        "currentSharePrice": 15.0,
+        "purchaseSharePrice": 30.0,
+        "numberOfShares": 11
     }
 ]
